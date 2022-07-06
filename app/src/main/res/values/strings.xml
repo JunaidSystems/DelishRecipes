@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DelishRecipes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delish_recipes">Delish_Recipes</string>
+    <string name="categories">Categories</string>
+    <string name="recipes">Recipes</string>
+</resources>
