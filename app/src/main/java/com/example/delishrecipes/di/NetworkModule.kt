@@ -1,6 +1,8 @@
 package com.example.delishrecipes.di
 
 import com.example.delishrecipes.api.CategoriesListAPI
+import com.example.delishrecipes.api.SpecificCategoryAPI
+import com.example.delishrecipes.api.SpecificMealAPI
 import com.example.delishrecipes.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -25,7 +27,19 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideCategoriesListApi(retrofit: Retrofit): CategoriesListAPI{
+    fun provideCategoriesListApi(retrofit: Retrofit): CategoriesListAPI {
         return retrofit.create(CategoriesListAPI::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSpecificCategoryApi(retrofit: Retrofit): SpecificCategoryAPI {
+        return retrofit.create(SpecificCategoryAPI::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSpecificMealApi(retrofit: Retrofit): SpecificMealAPI {
+        return retrofit.create(SpecificMealAPI::class.java)
     }
 }

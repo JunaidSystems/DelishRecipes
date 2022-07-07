@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.delishrecipes.ui.SplashFragment"
+        android:name="com.example.delishrecipes.ui.view.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoryListFragment"
-        android:name="com.example.delishrecipes.ui.CategoryListFragment"
+        android:name="com.example.delishrecipes.ui.view.CategoryListFragment"
         android:label="fragment_category_list"
         tools:layout="@layout/fragment_category_list" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/specificCategoryFragment"
-        android:name="com.example.delishrecipes.ui.SpecificCategoryFragment"
+        android:name="com.example.delishrecipes.ui.view.SpecificCategoryFragment"
         android:label="fragment_specific_category"
         tools:layout="@layout/fragment_specific_category" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/dishFragment"
-        android:name="com.example.delishrecipes.ui.DishFragment"
+        android:name="com.example.delishrecipes.ui.view.DishFragment"
         android:label="fragment_dish"
         tools:layout="@layout/fragment_dish" />
 </navigation>
