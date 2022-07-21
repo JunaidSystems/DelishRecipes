@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ import com.example.delishrecipes.databinding.FragmentSpecificCategoryBinding
 import com.example.delishrecipes.models.Meal
 import com.example.delishrecipes.ui.adapter.SpecificCategoryAdapter
 import com.example.delishrecipes.ui.viewmodel.SpecificCategoryViewModel
+import com.example.delishrecipes.utils.NetworkResult
 
 class SpecificCategoryFragment : Fragment() {
 
@@ -46,7 +48,22 @@ class SpecificCategoryFragment : Fragment() {
     private fun observeLivedata() {
         viewModel.specificCategoryLiveData.observe(viewLifecycleOwner, {
             it?.let {
-                adapter.submitList(it.data?.meals)
+                binding.progressBar.isVisible = false
+                it?.let {
+                    when (it) {
+                        is NetworkResult.Success -> {
+                            binding.rvCategories.isVisible = true
+                            adapter.submitList(it.data?.meals)
+                        }
+                        is NetworkResult.Loading -> {
+                            binding.progressBar.isVisible = true
+                            binding.rvCategories.isVisible = false
+                        }
+                        is NetworkResult.Error -> {
+                            binding.tvErrorMsg.text = it.message
+                        }
+                    }
+                }
             }
         })
     }

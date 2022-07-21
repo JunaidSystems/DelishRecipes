@@ -7,16 +7,19 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_3sdp"
         app:cardPreventCornerOverlap="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="@dimen/_125sdp"
+            android:layout_width="@dimen/_160sdp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:padding="@dimen/_5sdp">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -26,6 +29,7 @@
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/ic_dish"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
@@ -33,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
                 android:background="@color/black"
+                android:layout_marginTop="@dimen/_5sdp"
                 app:layout_constraintTop_toBottomOf="@id/iv_category"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
