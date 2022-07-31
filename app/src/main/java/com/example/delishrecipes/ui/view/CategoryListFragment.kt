@@ -46,7 +46,7 @@ class CategoryListFragment : Fragment() {
     }
 
     private fun observeLivedata() {
-        viewModel.categoriesListLiveData.observe(viewLifecycleOwner, {
+        viewModel.categoriesListLiveData.observe(viewLifecycleOwner) {
             binding.progressBar.isVisible = false
             binding.rvCategories.isVisible = false
             binding.tvErrorMsg.isVisible = false
@@ -66,7 +66,7 @@ class CategoryListFragment : Fragment() {
                     }
                 }
             }
-        })
+        }
     }
 
     private fun onCategoryClicked(categorySelected: Category) {
