@@ -48,6 +48,9 @@ class CategoryListFragment : Fragment() {
     private fun observeLivedata() {
         viewModel.categoriesListLiveData.observe(viewLifecycleOwner, {
             binding.progressBar.isVisible = false
+            binding.rvCategories.isVisible = false
+            binding.tvErrorMsg.isVisible = false
+
             it?.let {
                 when (it) {
                     is NetworkResult.Success -> {
@@ -56,9 +59,9 @@ class CategoryListFragment : Fragment() {
                     }
                     is NetworkResult.Loading -> {
                         binding.progressBar.isVisible = true
-                        binding.rvCategories.isVisible = false
                     }
                     is NetworkResult.Error -> {
+                        binding.tvErrorMsg.isVisible = true
                         binding.tvErrorMsg.text = it.message
                     }
                 }

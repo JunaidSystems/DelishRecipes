@@ -16,8 +16,12 @@ class SpecificMealRepo @Inject constructor(private val specificMealAPI: Specific
 
     suspend fun getSpecificMeal(id: String) {
         _specificMealLiveData.postValue(NetworkResult.Loading())
-        val response = specificMealAPI.specificDish(id = id)
-        handleResponse(response)
+        try {
+            val response = specificMealAPI.specificDish(id = id)
+            handleResponse(response)
+        } catch (e: java.lang.Exception) {
+            _specificMealLiveData.postValue(NetworkResult.Error("Something Went Wrong, Please check you internet connection!"))
+        }
     }
 
     private fun handleResponse(response: Response<SpecificDish>) {

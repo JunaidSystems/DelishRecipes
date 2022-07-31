@@ -16,8 +16,13 @@ class CategoryListRepo @Inject constructor(private val categoriesListAPI: Catego
 
     suspend fun getCategoryList() {
         _categoriesListLiveData.postValue(NetworkResult.Loading())
-        val response = categoriesListAPI.categoriesList()
-        handleResponse(response)
+        try {
+            val response = categoriesListAPI.categoriesList()
+            handleResponse(response)
+        }catch (e: java.lang.Exception){
+            _categoriesListLiveData.postValue(NetworkResult.Error("Something Went Wrong, Please check you internet connection!"))
+        }
+
     }
 
     private fun handleResponse(response: Response<CategoriesList>) {

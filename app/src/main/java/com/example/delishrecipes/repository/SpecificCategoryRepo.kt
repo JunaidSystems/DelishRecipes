@@ -16,8 +16,12 @@ class SpecificCategoryRepo @Inject constructor(private val specificCategoryAPI: 
 
     suspend fun getSpecificCategory(category: String) {
         _specificCategoryLiveData.postValue(NetworkResult.Loading())
-        val response = specificCategoryAPI.mealsList(category = category)
-        handleResponse(response)
+        try {
+            val response = specificCategoryAPI.mealsList(category = category)
+            handleResponse(response)
+        } catch (e: java.lang.Exception) {
+            _specificCategoryLiveData.postValue(NetworkResult.Error("Something Went Wrong, Please check you internet connection!"))
+        }
     }
 
     private fun handleResponse(response: Response<MealsList>) {
