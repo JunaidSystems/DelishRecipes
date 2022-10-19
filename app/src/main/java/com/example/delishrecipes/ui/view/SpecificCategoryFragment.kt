@@ -46,7 +46,7 @@ class SpecificCategoryFragment : Fragment() {
     }
 
     private fun observeLivedata() {
-        viewModel.specificCategoryLiveData.observe(viewLifecycleOwner, {
+        viewModel.specificCategoryLiveData.observe(viewLifecycleOwner) {
             it?.let {
                 binding.progressBar.isVisible = false
                 it?.let {
@@ -65,7 +65,7 @@ class SpecificCategoryFragment : Fragment() {
                     }
                 }
             }
-        })
+        }
     }
 
     private fun onMealClicked(mealSelected: Meal) {

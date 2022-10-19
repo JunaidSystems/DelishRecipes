@@ -31,6 +31,11 @@ class DishFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getSpecificDish(getMealId())
         observeLivedata()
+        binding.btnPlayVideo.setOnClickListener {
+            val dialogPlayVideoFragment = viewModel.getYoutubeId()
+                ?.let { it1 -> DialogPlayVideoFragment.newInstance(it1) }
+            dialogPlayVideoFragment?.show(childFragmentManager, "")
+        }
     }
 
     private fun getMealId(): String {
@@ -38,7 +43,7 @@ class DishFragment : Fragment() {
     }
 
     private fun observeLivedata() {
-        viewModel.specificDishLiveData.observe(viewLifecycleOwner, {
+        viewModel.specificDishLiveData.observe(viewLifecycleOwner) {
             binding.progressBar.isVisible = false
             when (it) {
                 is NetworkResult.Success -> {
@@ -52,6 +57,7 @@ class DishFragment : Fragment() {
                                 Glide.with(it1).load(it.strMealThumb).into(ivIcon)
                             }
                         }
+                        viewModel.setYoutubeId(it.strYoutube)
                     }
                 }
                 is NetworkResult.Loading -> {
@@ -63,7 +69,7 @@ class DishFragment : Fragment() {
                     binding.tvErrorMsg.text = it.message
                 }
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

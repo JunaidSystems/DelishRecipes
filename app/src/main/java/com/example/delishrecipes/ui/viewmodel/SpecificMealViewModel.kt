@@ -17,10 +17,23 @@ class SpecificMealViewModel @Inject constructor(private val specificMealRepo: Sp
     val specificDishLiveData: LiveData<NetworkResult<SpecificDish>>
         get() = specificMealRepo.specificMealLiveData
 
+    private var strYoutubeId: String? = null
+
     fun getSpecificDish(id: String) {
         viewModelScope.launch {
             specificMealRepo.getSpecificMeal(id)
         }
     }
 
+    fun setYoutubeId(completeUrl: String) {
+        var id = ""
+        if (!completeUrl.isNullOrEmpty()){
+            id = completeUrl.substring(32)
+        }
+        strYoutubeId = id
+    }
+
+    fun getYoutubeId(): String? {
+        return strYoutubeId
+    }
 }

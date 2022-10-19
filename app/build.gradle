@@ -83,4 +83,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+
+    def last_version = "11.1.0"
+    implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:$last_version"
 }
